@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "150074751715",
+    "project_id": "foodapp-ec382",
+    "storage_bucket": "foodapp-ec382.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150074751715:android:bb32ef613a6caa0bfde3d6",
+        "android_client_info": {
+          "package_name": "com.nn.fitandfresh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "150074751715-8scefphrbp0ak0ab4orl9c7h5b63j4ep.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxDkASMzSxa0w1zbkHKQhO0O00LwKV3hs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "150074751715-8scefphrbp0ak0ab4orl9c7h5b63j4ep.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

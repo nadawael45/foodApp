@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-
-import '../../constants/colors.dart';
+import '../../shared/constants/colors.dart';
 import 'custom_text.dart';
 class CustomOrder extends StatelessWidget {
   String? img;

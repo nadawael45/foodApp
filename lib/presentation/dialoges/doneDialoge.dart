@@ -1,9 +1,10 @@
 import 'dart:ui';
 
-import 'package:fitandfresh/constants/colors.dart';
 import 'package:fitandfresh/presentation/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../shared/constants/colors.dart';
 class DoneDialoge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

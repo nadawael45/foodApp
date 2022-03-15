@@ -1,7 +1,8 @@
-import 'package:fitandfresh/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:easy_localization/easy_localization.dart';
+
+import '../../shared/constants/colors.dart';
 class CustomChangeInfo extends StatelessWidget {
   String? hint;
   TextEditingController? controller;

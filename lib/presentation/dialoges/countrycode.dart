@@ -1,7 +1,8 @@
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:fitandfresh/provider/countryProv.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../domain/provider/countryProv.dart';
 
 class CountryCode extends StatelessWidget {
 

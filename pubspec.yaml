@@ -55,6 +55,7 @@ dependencies:
   geocode: ^1.0.1
   flutter_map: ^0.14.0
   latlong2:
+  expandable: ^5.0.1
 
 
 

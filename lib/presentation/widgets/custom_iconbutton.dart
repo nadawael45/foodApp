@@ -9,7 +9,7 @@ class CustomBtnIcon extends StatelessWidget {
   double? height;
 
 
-  CustomBtnIcon({this.icon, this.function,this.color,this.width=30,this.height=30});
+  CustomBtnIcon({this.icon, this.function,this.color,this.width=40,this.height=40});
 
   @override
   Widget build(BuildContext context) {

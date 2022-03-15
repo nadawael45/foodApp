@@ -11,5 +11,7 @@ const accountInfo='/acountInfo';
 const changePass='/changePass';
 const changeEmail='/changeEmail';
 const bmr='/bmr';
+const seeAll='/bseeall';
 const myOrder='/myOrder';
 const location='/location';
+const forgotpass='/forgotpass';

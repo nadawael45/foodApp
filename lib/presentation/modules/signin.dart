@@ -1,7 +1,10 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:fitandfresh/app_routes.dart';
-import 'package:fitandfresh/constants/colors.dart';
-import 'package:fitandfresh/constants/screens.dart';
+import 'package:fitandfresh/shared/validator.dart';
+import '../../domain/cubit/auth/email_auth_cubit.dart';
+import '../../domain/cubit/auth/email_auth_state.dart';
+import '../../shared/constants/colors.dart';
+import '../../shared/constants/images.dart';
+
 import 'package:fitandfresh/presentation/widgets/custom_button.dart';
 import 'package:fitandfresh/presentation/widgets/custom_iconbutton.dart';
 import 'package:fitandfresh/presentation/widgets/custom_text.dart';
@@ -10,10 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../constants/images.dart';
-import '../../domain/cubit/auth/email_auth_cubit.dart';
-import '../../domain/cubit/auth/email_auth_state.dart';
-import '../dialoges/toast.dart';
+
+import '../../shared/constants/screens.dart';
 import '../widgets/custom_scaffold.dart';
 
 class SignIn extends StatefulWidget {
@@ -29,7 +30,7 @@ class _SignInState extends State<SignIn> {
   TextEditingController controllerPass=TextEditingController();
   TextEditingController controllerEmail=TextEditingController();
 
-   GlobalKey<ScaffoldState> scaffoldKey =  GlobalKey<ScaffoldState>();
+   GlobalKey<FormState> formKey =  GlobalKey<FormState>();
 
 
   @override
@@ -68,7 +69,7 @@ class _SignInState extends State<SignIn> {
               BlocConsumer<EmailAuthCubit,EmailAuthStates>(
                 listener: (BuildContext context, state) {
                   if(state is SignInSuccess){
-                    Navigator.of(context).pushNamed(homepath);
+                    Navigator.of(context).popAndPushNamed(homepath);
 
                     print('SigninSuccess');
                   }
@@ -76,15 +77,18 @@ class _SignInState extends State<SignIn> {
                 builder: (BuildContext context, Object? state) =>
 
                     Form(
+                      key: formKey,
                       child:
                       Column(
                         children: [
                           Padding(padding:  EdgeInsets.only(bottom:24.sp),),
                           CustomTextFormField(text: 'Email',controller: controllerEmail,
+                          //  validate: Validator.validateEmail,
                             hintText: 'Enter Your Email',prefixIcon:Icons.mail,obscureTxt: false,keyBoardType: TextInputType.emailAddress,),
 
                           Padding(padding:  EdgeInsets.only(bottom:13.sp),),
                           CustomTextFormField(text: 'Passwod',controller: controllerPass,
+                          // validate: Validator.validatePassword(controllerPass.text),
                   hintText: 'Enter Your Password',prefixIcon: Icons.lock,obscureTxt: obscure,suffixIcon: obscure?Icons.visibility_off:Icons.remove_red_eye,keyBoardType: TextInputType.visiblePassword,
                   function: (){
                   setState(() {
@@ -113,12 +117,18 @@ class _SignInState extends State<SignIn> {
                     CustomText(text: 'Remember me',color: Colors.grey,)
 
                   ],),
-                  CustomText(text: 'Forgot Password?',fontWeight: FontWeight.bold,color: priGreen,)
+                  InkWell(onTap: (){
+                    Navigator.of(context).pushNamed(forgotpass);
+                  },
+                      child: CustomText(text: 'Forgot Password?',fontWeight: FontWeight.bold,color: priGreen,))
               ],),
 
               Padding(padding:  EdgeInsets.only(bottom:10.sp),),
               CustomButton('Login', (){
-                EmailAuthCubit.get(context).SignInAuth(controllerEmail.text, controllerPass.text);
+                if(formKey.currentState!.validate()){
+                  EmailAuthCubit.get(context).SignInAuth(controllerEmail.text, controllerPass.text);
+
+                }
 
               }),
               Padding(padding:  EdgeInsets.only(bottom:13.sp),),

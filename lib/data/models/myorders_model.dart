@@ -1,4 +1,5 @@
-import '../../constants/images.dart';
+
+import '../../shared/constants/images.dart';
 
 class MyOrderModel{
   String? img;

@@ -1,7 +1,7 @@
-import 'package:fitandfresh/presentation/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../../constants/colors.dart';
+import '../../shared/constants/colors.dart';
+import 'custom_text.dart';
 class CustomListTile extends StatelessWidget {
   String? text;
   IconData? icon;

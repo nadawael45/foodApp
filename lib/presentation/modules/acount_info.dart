@@ -1,8 +1,7 @@
-import 'package:fitandfresh/constants/colors.dart';
-import 'package:fitandfresh/constants/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../../constants/images.dart';
+import '../../shared/constants/images.dart';
+import '../../shared/constants/screens.dart';
 import '../widgets/custom_scaffold.dart';
 import '../widgets/custom_setting_listtile.dart';
 import '../widgets/custom_text.dart';

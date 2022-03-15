@@ -51,6 +51,7 @@ class PhoneAuthCubit extends Cubit<PhoneAuthStates> {
 submitCode(String otpCode){
     emit(OtpLoading());
     // ده هيستقلا الكود اللي اتبعت ليوزر وال id  اللي اتكريت لما سجل
+
     AuthCredential authCredential =PhoneAuthProvider.credential(verificationId: id!,smsCode:otpCode );
     auth.signInWithCredential(authCredential).then((value) => {
 

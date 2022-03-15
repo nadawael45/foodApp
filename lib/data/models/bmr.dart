@@ -1,13 +1,11 @@
 import 'package:fitandfresh/presentation/widgets/bmr_custom.dart';
-import 'package:fitandfresh/presentation/widgets/custom_iconbutton.dart';
 import 'package:fitandfresh/presentation/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'dart:math';
-import '../../constants/colors.dart';
 import '../../presentation/widgets/custom_button.dart';
 import '../../presentation/widgets/custom_scaffold.dart';
+import '../../shared/constants/colors.dart';
 class BMR extends StatefulWidget {
   @override
   State<BMR> createState() => _BMRState();

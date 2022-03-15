@@ -20,6 +20,12 @@ class SignInFailed extends EmailAuthStates{
 
 }
 
+
+
+class CodePassLoading extends EmailAuthStates{}
+class CodePassSuccess extends EmailAuthStates{}
+class CodePassFailed extends EmailAuthStates{}
+
 class SignUpLoading extends EmailAuthStates{}
 class SignUpSuccess extends EmailAuthStates{}
 class SignUpFailed extends EmailAuthStates{}

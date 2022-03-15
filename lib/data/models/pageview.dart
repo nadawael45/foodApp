@@ -1,5 +1,6 @@
-import 'package:fitandfresh/constants/images.dart';
-import 'package:easy_localization/easy_localization.dart';
+
+
+import '../../shared/constants/images.dart';
 
 class PageModel{
   String? img;

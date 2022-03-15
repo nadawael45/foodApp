@@ -1,4 +1,5 @@
-import 'package:fitandfresh/constants/images.dart';
+
+import '../../shared/constants/images.dart';
 
 class Meal {
     String? img;

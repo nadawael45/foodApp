@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
-import '../domain/cubit/dark_mode/dark_cubit.dart';
+
+import '../../domain/cubit/dark_mode/dark_cubit.dart';
 
  Color priGrey=Colors.grey.shade500;
 Color priGreen=Colors.lightGreen;

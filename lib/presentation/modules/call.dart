@@ -1,9 +1,10 @@
+import 'package:fitandfresh/shared/constants/images.dart';
 import 'package:fitandfresh/domain/cubit/auth/phone_auth_cubit.dart';
 import 'package:fitandfresh/domain/cubit/auth/phone_auth_state.dart';
 import 'package:fitandfresh/presentation/dialoges/toast.dart';
 import 'package:fitandfresh/presentation/modules/otp.dart';
+import 'package:fitandfresh/domain/provider/countryProv.dart';
 import 'package:flutter/material.dart';
-import 'package:fitandfresh/constants/screens.dart';
 import 'package:fitandfresh/presentation/widgets/custom_button.dart';
 import 'package:fitandfresh/presentation/widgets/custom_text.dart';
 import 'package:fitandfresh/presentation/widgets/custom_textformfield.dart';
@@ -11,8 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import '../../constants/images.dart';
-import '../../provider/countryProv.dart';
+import '../../shared/validator.dart';
 import '../widgets/custom_scaffold.dart';
 
 class CallScreen extends StatelessWidget {
@@ -86,6 +86,7 @@ class CallScreen extends StatelessWidget {
 
                           CustomTextFormField(
                               text: 'Country',
+                              readonly: true,
 
                               hintText:'|  '+'${Provider.of<CountryProv>(context).countryName==null?'مصر':Provider.of<CountryProv>(context).countryName
                               }',
@@ -99,6 +100,7 @@ class CallScreen extends StatelessWidget {
                           ),
 
                           CustomTextFormField(
+                           // validate: Validator.validatePhone(controllerPhone.text),
                             text: 'Phone Number',
                             hintText: 'Enter Your Phone Nummber',
                             prefixIcon: Icons.call,

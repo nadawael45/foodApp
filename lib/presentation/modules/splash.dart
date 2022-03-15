@@ -1,8 +1,9 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:fitandfresh/constants/images.dart';
-import 'package:fitandfresh/constants/screens.dart';
+
 import 'package:fitandfresh/presentation/modules/introduction.dart';
 import 'package:flutter/material.dart';
+
+import '../../shared/constants/images.dart';
 
 class SplashScreen extends StatelessWidget {
    final Widget? nextScreen;

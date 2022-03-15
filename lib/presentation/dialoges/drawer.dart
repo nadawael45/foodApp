@@ -1,10 +1,10 @@
-import 'package:fitandfresh/constants/colors.dart';
-import 'package:fitandfresh/constants/screens.dart';
 import 'package:fitandfresh/data/models/drawer_model.dart';
 import 'package:fitandfresh/presentation/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../../constants/images.dart';
+import '../../shared/constants/colors.dart';
+import '../../shared/constants/images.dart';
+import '../../shared/constants/screens.dart';
 import 'feedbackDialoge.dart';
 class CustomDrawer extends StatelessWidget {
   @override

@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitandfresh/data/models/user_model.dart';
+import 'package:fitandfresh/data/repository/user_data.dart';
 import 'package:fitandfresh/domain/cubit/auth/phone_auth_state.dart';
 import 'package:fitandfresh/presentation/dialoges/toast.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,16 +36,34 @@ class EmailAuthCubit extends Cubit<EmailAuthStates> {
 
 
      }
+     UserData userData=UserData();
+
+
   forgetPass(email)async{
-    await auth.sendPasswordResetEmail(email: email);
+    emit(CodePassLoading());
+    await auth.sendPasswordResetEmail(email: email).then((value)  {
+
+        emit(CodePassSuccess());
+        showToast(msg: 'Check your Gmail', state: ToastedStates.SUCCESS);
+
+
+    }).catchError((onError){
+
+      emit(CodePassFailed());
+      showToast(msg: onError.toString(), state: ToastedStates.ERROR);
+
+
+    });
+
+
   }
-  SignUpAuth(String email,String password) {
+
+  SignUpAuth({ email, password, location,phone,name}) {
     emit(SignUpLoading());
     auth.createUserWithEmailAndPassword(email: email, password: password).then((value) {
       if(value != null)
       {
         showToast(msg: 'Done', state: ToastedStates.SUCCESS);
-
         emit(SignUpSuccess());
       }else{
         showToast(msg: onError.toString(), state: ToastedStates.ERROR);

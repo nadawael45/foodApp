@@ -1,7 +1,6 @@
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
-
-import '../../constants/colors.dart';
+import '../../shared/constants/colors.dart';
 import 'custom_iconbutton.dart';
 import 'custom_text.dart';
 class CustomBmr extends StatelessWidget {

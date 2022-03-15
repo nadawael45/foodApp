@@ -12,7 +12,6 @@ class LocationCubit extends Cubit<LocationStates> {
   var latitude;
   String? street;
 
-
   checkService()async{
     emit(LoadingService());
      await Location().serviceEnabled().then((value) {

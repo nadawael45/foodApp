@@ -1,9 +1,9 @@
-import 'package:fitandfresh/constants/colors.dart';
 import 'package:fitandfresh/presentation/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../domain/cubit/dark_mode/dark_cubit.dart';
+import '../../shared/constants/colors.dart';
 import '../dialoges/drawer.dart';
 
 class CustomScaffold extends StatelessWidget {

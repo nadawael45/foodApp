@@ -1,8 +1,8 @@
+import 'package:fitandfresh/presentation/widgets/custom_button.dart';
+import 'package:fitandfresh/presentation/widgets/custom_change_txtfield.dart';
 import 'package:fitandfresh/presentation/widgets/custom_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../widgets/custom_button.dart';
-import '../widgets/custom_change_txtfield.dart';
 class ChangeEmail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
