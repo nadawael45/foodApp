@@ -7,13 +7,17 @@ import 'package:fitandfresh/shared/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 import '../../shared/constants/colors.dart';
 import '../../shared/constants/screens.dart';
 import '../widgets/custom_button.dart';
 class ForgotPass extends StatelessWidget {
   TextEditingController controllerCountry=TextEditingController();
   TextEditingController controllerEmail=TextEditingController();
+  GlobalKey<FormState> formKey =  GlobalKey<FormState>();
+  GlobalKey<ScaffoldState> scaffoldKey =  GlobalKey<ScaffoldState>();
+
+
   @override
   Widget build(BuildContext context) {
     return
@@ -47,68 +51,71 @@ class ForgotPass extends StatelessWidget {
                   ),
                   SizedBox(height: 12.sp,),
 
-                  CustomText(text: 'Trouble Logging In ?',fontWeight: FontWeight.bold,),
+                  CustomText(text: 'Trouble Logging In ?'.tr(),fontWeight: FontWeight.bold,),
                   SizedBox(height: 12.sp,),
                   CustomText(text: 'enter your email or phone and we\'ll send \n'
-                      'you a link to get get back into  your account',),
+                      'you a link to get get back into  your account'.tr(),),
                   SizedBox(height: 12.sp,),
-                  DefaultTabController(
-                    length: 2,
+                  Form(
+                    key: formKey,
+                    child: DefaultTabController(
+                      length: 2,
 
-                    child: Column(
-                      children: [
-                        TabBar(
+                      child: Column(
+                        children: [
+                          TabBar(
 
-                            labelColor: Colors.black,
-                            indicatorPadding: EdgeInsets.symmetric(horizontal: 20.sp),
-                            indicatorColor: Colors.black,
-                            unselectedLabelColor: priGrey,
-                            labelPadding: EdgeInsets.all(5.sp),
-                            tabs: [
-                          CustomText(text: 'Email',fontWeight: FontWeight.bold),
-                          CustomText(text: 'Phone',fontWeight: FontWeight.bold),
-
-                        ]),
-                        Container(
-                          width: 100.w,
-                          height: 70.sp,
-                          child: TabBarView(children: [
-                            CustomTextFormField(text: '',controller: controllerEmail,
-                              validate: Validator.validateEmail(controllerEmail.text),
-
-                              hintText: 'Enter Your Email',prefixIcon:Icons.mail,keyBoardType: TextInputType.emailAddress,),
-
-                            CustomTextFormField(
-                              text: '',
-                              readonly: false,
-                              validate: Validator.validatePhone(controllerCountry.text),
-
-                              hintText:'Enter Your Phone',
-                              countrycode: true,
-
-                              controller: controllerCountry,
-                              keyBoardType: TextInputType.phone,
-                            ),
-
+                              labelColor: Colors.black,
+                              indicatorPadding: EdgeInsets.symmetric(horizontal: 20.sp),
+                              indicatorColor: Colors.black,
+                              unselectedLabelColor: priGrey,
+                              labelPadding: EdgeInsets.all(5.sp),
+                              tabs: [
+                            CustomText(text: 'E-mail'.tr(),fontWeight: FontWeight.bold),
+                            CustomText(text: 'Phone'.tr(),fontWeight: FontWeight.bold),
 
                           ]),
-                        ),
-                      ],
+                          Container(
+                            width: 100.w,
+                            height: 70.sp,
+                            child: TabBarView(children: [
+                              CustomTextFormField(text: '',controller: controllerEmail,
+                                validate: Validator.validateEmail,
+
+                                hintText: 'Enter Your Email'.tr(),prefixIcon:Icons.mail,keyBoardType: TextInputType.emailAddress,),
+
+                              CustomTextFormField(
+                                text: '',
+                                readonly: false,
+                                validate: Validator.validatePhone,
+
+                                hintText:'Enter Your Phone Number'.tr(),
+                                countrycode: true,
+
+                                controller: controllerCountry,
+                                keyBoardType: TextInputType.phone,
+                              ),
+
+
+                            ]),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(height: 20.sp,),
 
-                  CustomButton('Next',(){
+                  CustomButton('Next'.tr(),(){
                     EmailAuthCubit.get(context).forgetPass(controllerEmail.text);
                   }),
                  SizedBox(height: 12.sp,),
-                 CustomText(text: 'Need More Help ?',fontWeight: FontWeight.bold,color: priGreen,)
+                 CustomText(text: 'Need More Help ?'.tr(),fontWeight: FontWeight.bold,color: priGreen,)
 
 
     ],
               ),
             ),
-          ),
+          ), scaffKey: scaffoldKey,
         ),
       );
   }

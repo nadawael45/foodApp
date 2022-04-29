@@ -1,5 +1,5 @@
 import 'package:expandable/expandable.dart';
-import 'package:fitandfresh/data/models/order.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fitandfresh/presentation/widgets/custom_button.dart';
 import 'package:fitandfresh/presentation/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +17,12 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
-  bool riceBox=false;
-  bool saladeBox=false;
-  bool potatoBox=false;
-  bool pastaBox=false;
+  GlobalKey<ScaffoldState> scaffoldKey =  GlobalKey<ScaffoldState>();
+
+//  bool riceBox=false;
+//  bool saladeBox=false;
+//  bool potatoBox=false;
+//  bool pastaBox=false;
 
   @override
   Widget build(BuildContext context) {
@@ -60,10 +62,10 @@ class _OrderScreenState extends State<OrderScreen> {
 
                     Row(
                       children: [
-                        Circle(num: widget.orderItem.calory,text: 'calories',),
-                        Circle(num: widget.orderItem.fat,text: 'fat',),
-                        Circle(num: widget.orderItem.carb,text: 'carb',),
-                        Circle(num: widget.orderItem.protein,text: 'protein',),
+                        Circle(num: widget.orderItem.calory,text: 'calories'.tr(),),
+                        Circle(num: widget.orderItem.fat,text: 'fat'.tr(),),
+                        Circle(num: widget.orderItem.carb,text: 'carb'.tr(),),
+                        Circle(num: widget.orderItem.protein,text: 'protein'.tr(),),
 
 
                       ],
@@ -95,55 +97,12 @@ class _OrderScreenState extends State<OrderScreen> {
                           expandIcon: Icons.arrow_circle_down,
                           collapseIcon: Icons.arrow_circle_up
                       ),
-                      header: CustomText(text: 'Side 1',fontWeight: FontWeight.bold,txtSize: 15.sp,textAlign: TextAlign.start,),
-                      collapsed:  CustomText(text:'Required',color: priGrey,txtSize: 9.sp,),
+                      header: CustomText(text: 'Side 1'.tr(),fontWeight: FontWeight.bold,txtSize: 15.sp,textAlign: TextAlign.start,),
+                      collapsed:  CustomText(text:'Required'.tr(),color: priGrey,txtSize: 9.sp,),
                       expanded: Column(
                         children: [
                           Divider(thickness: 2,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CustomText(text:'rice' ,fontWeight: FontWeight.bold),
-                              Checkbox( fillColor: MaterialStateProperty.all(priGrey),
-                                  focusColor: priGreen,
-                                  value: riceBox, onChanged: (bool){setState(() {
-                                    riceBox=bool!;
-                                  });}),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CustomText(text:'paste' ,fontWeight: FontWeight.bold),
-                              Checkbox( fillColor: MaterialStateProperty.all(priGrey),
-                                  focusColor: priGreen,
-                                  value: pastaBox, onChanged: (bool){setState(() {
-                                    pastaBox=bool!;
-                                  });}),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CustomText(text:'salade' ,fontWeight: FontWeight.bold),
-                              Checkbox( fillColor: MaterialStateProperty.all(priGrey),
-                                  focusColor: priGreen,
-                                  value: saladeBox, onChanged: (bool){setState(() {
-                                    saladeBox=bool!;
-                                  });}),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CustomText(text:'potato' ,fontWeight: FontWeight.bold),
-                              Checkbox( fillColor: MaterialStateProperty.all(priGrey),
-                                  focusColor: priGreen,
-                                  value: potatoBox, onChanged: (bool){setState(() {
-                                    potatoBox=bool!;
-                                  });}),
-                            ],
-                          ),
+                          Sides()
 
                         ],
                       ),
@@ -172,55 +131,13 @@ class _OrderScreenState extends State<OrderScreen> {
                           expandIcon: Icons.arrow_circle_down,
                           collapseIcon: Icons.arrow_circle_up
                       ),
-                      header: CustomText(text: 'Side 2',fontWeight: FontWeight.bold,txtSize: 15.sp,textAlign: TextAlign.start,),
-                      collapsed:  CustomText(text:'Required',color: priGrey,txtSize: 9.sp,),
+                      header: CustomText(text: 'Side 2'.tr(),fontWeight: FontWeight.bold,txtSize: 15.sp,textAlign: TextAlign.start,),
+                      collapsed:  CustomText(text:'Required'.tr(),color: priGrey,txtSize: 9.sp,),
                       expanded: Column(
                         children: [
                           Divider(thickness: 2,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CustomText(text:'rice' ,fontWeight: FontWeight.bold),
-                              Checkbox( fillColor: MaterialStateProperty.all(priGrey),
-                                  focusColor: priGreen,
-                                  value: riceBox, onChanged: (bool){setState(() {
-                                    riceBox=bool!;
-                                  });}),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CustomText(text:'paste' ,fontWeight: FontWeight.bold),
-                              Checkbox( fillColor: MaterialStateProperty.all(priGrey),
-                                  focusColor: priGreen,
-                                  value: pastaBox, onChanged: (bool){setState(() {
-                                    pastaBox=bool!;
-                                  });}),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CustomText(text:'salade' ,fontWeight: FontWeight.bold),
-                              Checkbox( fillColor: MaterialStateProperty.all(priGrey),
-                                  focusColor: priGreen,
-                                  value: saladeBox, onChanged: (bool){setState(() {
-                                    saladeBox=bool!;
-                                  });}),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CustomText(text:'potato' ,fontWeight: FontWeight.bold),
-                              Checkbox( fillColor: MaterialStateProperty.all(priGrey),
-                                  focusColor: priGreen,
-                                  value: potatoBox, onChanged: (bool){setState(() {
-                                    potatoBox=bool!;
-                                  });}),
-                            ],
-                          ),
+                          Sides()
+
 
                         ],
                       ),
@@ -247,7 +164,7 @@ class _OrderScreenState extends State<OrderScreen> {
                    decoration: InputDecoration(
                      contentPadding: EdgeInsets.all(10.sp),
 
-                     hintText: 'Comment for Ordering',
+                     hintText: 'Comment for Ordering'.tr(),
                        hintStyle: TextStyle(fontSize: 10.sp),
 
                        border: OutlineInputBorder(
@@ -275,14 +192,14 @@ class _OrderScreenState extends State<OrderScreen> {
               Padding(
                 padding:  EdgeInsets.all(18.sp),
                 child: CustomButton(
-                'Add To Cart - ${widget.orderItem!.itemPrice} Egyp'
+                'Add To Cart'.tr()+ ' - ${widget.orderItem!.itemPrice} Egyp'
                 , (){}),
               )
 
 
             ],
           ),
-        ),
+        ), scaffKey: scaffoldKey,
       );
   }
 }
@@ -331,3 +248,67 @@ class Circle extends StatelessWidget {
     );
   }
 }
+class Sides extends StatefulWidget {
+  @override
+  State<Sides> createState() => _SidesState();
+}
+
+class _SidesState extends State<Sides> {
+  bool riceBox=false;
+  bool saladeBox=false;
+  bool potatoBox=false;
+  bool pastaBox=false;
+
+  @override
+  Widget build(BuildContext context) {
+    return
+      Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomText(text:'rice' .tr(),fontWeight: FontWeight.bold),
+              Checkbox( fillColor: MaterialStateProperty.all(priGrey),
+                  focusColor: priGreen,
+                  value: riceBox, onChanged: (bool){setState(() {
+                    riceBox=bool!;
+                  });}),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomText(text:'pasta'.tr() ,fontWeight: FontWeight.bold),
+              Checkbox( fillColor: MaterialStateProperty.all(priGrey),
+                  focusColor: priGreen,
+                  value: pastaBox, onChanged: (bool){setState(() {
+                    pastaBox=bool!;
+                  });}),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomText(text:'salade'.tr() ,fontWeight: FontWeight.bold),
+              Checkbox( fillColor: MaterialStateProperty.all(priGrey),
+                  focusColor: priGreen,
+                  value: saladeBox, onChanged: (bool){setState(() {
+                    saladeBox=bool!;
+                  });}),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomText(text:'potato'.tr() ,fontWeight: FontWeight.bold),
+              Checkbox( fillColor: MaterialStateProperty.all(priGrey),
+                  focusColor: priGreen,
+                  value: potatoBox, onChanged: (bool){setState(() {
+                    potatoBox=bool!;
+                  });}),
+            ],
+          ),        ],
+      );
+  }
+}
+

@@ -1,3 +1,4 @@
+import 'package:fitandfresh/data/local/cacheHelper.dart';
 import 'package:fitandfresh/presentation/widgets/custom_iconbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -140,6 +141,7 @@ class IntroScreen extends StatelessWidget {
                         width: 32.sp,
                         height: 32.sp,
                         function: () {
+                          CacheHelper.putBool('onBoard', true);
                           Navigator.pushNamed(context, signinpath);
                         },
                         icon: Icon(
@@ -160,136 +162,5 @@ class IntroScreen extends StatelessWidget {
     );
   }
 }
-//child: Column(
-//children: [
-//
-//Expanded(
-//flex:3,
-//child: Column(
-//children: [
-//Row(
-//crossAxisAlignment: CrossAxisAlignment.start,
-//mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//children: [
-//InkWell(
-//onTap: () {
-//controller.jumpToPage(2);
-//},
-//child: CustomText(
-//text: 'Skip',
-//txtSize: 13.sp,
-//color: Colors.grey.shade400,
-//),
-//),
-//InkWell(
-//onTap: () {
-//
-//CheckLanguageCubit.get(context).changeLangBool(context);
-//
-//},
-//child: CustomText(
-//text: 'English',
-//txtSize: 13.sp,
-//color: Colors.lightGreen,
-//),
-//),
-//],
-//),
-//Container(
-//color: Colors.green,
-//height: 60.h,
-//width: 100.w,
-//child: Center(
-//child: LayoutBuilder(
-//builder: (BuildContext context,
-//    BoxConstraints constraints) {
-//return PageView.builder(
-//itemCount: boardList.length,
-//controller: controller,
-//itemBuilder: (_, index) {
-//return Column(
-//mainAxisAlignment: MainAxisAlignment.center,
-//children: [
-//Container(
-////                                              width: 100.w,
-////                                                height: 25.h,
-//decoration: BoxDecoration(
-//
-//borderRadius: BorderRadius.circular(20),
-//
-//
-//),
-//child:CircleAvatar(
-//
-//backgroundImage:AssetImage(
-//boardList[index].img!,
-//
-//
-//) ,
-//radius: 110,
-//) ),
-//Padding(
-//padding: EdgeInsets.only(
-//top: h * 0.08,
-//bottom: h * 0.025),
-//child: CustomText(
-//text: boardList[index].text1!,
-//txtSize: 16.sp,
-//fontWeight: FontWeight.bold,
-//),
-//),
-//CustomText(
-//text: boardList[index].text2!,
-//txtSize: 10.sp,
-//),
-//]);
-//},
-//);
-//},
-//),
-//)),
-//],
-//),
-//),
-//Expanded(
-//child: Container(
-//width: 100.w,
-//color: Colors.red,
-//child: Column(
-//mainAxisAlignment: MainAxisAlignment.start,
-//crossAxisAlignment: CrossAxisAlignment.center,
-//children: [
-//
-//SmoothPageIndicator(
-//controller: controller,
-//count: boardList.length,
-//effect: ExpandingDotsEffect(
-//dotHeight: 8.sp,
-//dotWidth: 8.sp,
-//activeDotColor: Colors.lightGreen
-//// strokeWidth: 5,
-//),
-//),
-//Padding(
-//padding: EdgeInsets.only(bottom: h * 0.08),
-//),
-//CustomBtnIcon(
-//width:32.sp ,
-//height:32.sp ,
-//function: () {
-//Navigator.pushNamed(context, signinpath);
-//},
-//icon: Icon(
-//Icons.arrow_forward,
-//color: Colors.white,
-//),
-//color: priGreen,
-//),
-//],
-//),
-//),
-//),
-//
-//],
-//),
+
 

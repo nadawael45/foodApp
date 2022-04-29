@@ -5,7 +5,6 @@
   "salma": "salma",
   "Arabic": "Arabic",
   "English": "English",
-  "عربي": "عربي",
 
   "Skip" : "Skip",
   "language" : "language",
@@ -15,11 +14,138 @@
   "Let\\'s Make A Delicious Healthy Food With The Best Recipe For The Familiy" : "Let's Make A Delicious Healthy Food With The Best Recipe For The Family",
 
 
-  "introContent2" : "All our meats are fresh and clean . We care about our customers health .",
-  "introContent3" : "your order will be delivered faster than you think .",
-  "logInScreenTitle" : "Sign In To Continue",
-  "phoneNumberScreenTitle" : "Continue With Phone Number",
-  "verifyNumberScreenTitle" : "Verify Phone"
+  "Female": "Female",
+  "Male": "Male",
+  "Change Password": "Change Password",
+  "Change E-mail": "Change E-mail",
+  "Last Name": "Last Name",
+  "First Name": "First Name",
+  "E-mail": "E-mail",
+  "Change profile picture": "Change profile picture",
+  "Account Info": "Account Info",
+
+  "Save": "Save",
+  "Address Info": "Address Info",
+  "Continue With Phone Number": "Continue With Phone Number",
+  "Country": "Country",
+  "Phone Number": "Phone Number",
+  "Enter Your Phone Number": "Enter Your Phone Number",
+  "Continue": "Continue",
+
+
+
+  "Order Details": "Order Details",
+  "Heaven\\'s Food": "Heaven\\'s Food",
+  "Delivery / As Soon As Possible": "Delivery / As Soon As Possible",
+  "get Location": "get Location",
+  "Your Order": "Your Order",
+  "Subtotal": "Subtotal",
+  "Delivery": "Delivery",
+  "Total": "Total",
+  "Place Order": "Place Order",
+  "You must add items": "You must add items",
+
+
+
+
+  "Change Email": "Change Email",
+  "New Email": "New Email",
+  "New Password": "New Password",
+  "Confirm New Password": "Confirm New Password",
+  "Current Password": "Current Password",
+  "Submit": "Submit",
+  "Confirm Order": "Confirm Order",
+  "Address Details": "Address Details",
+
+  "Favourites": "Favourites",
+
+  "Trouble Logging In ?": "Trouble Logging In ?",
+
+  "enter your email or phone and we\\'ll send \\n'\n  'you a link to get get back into  your account":
+  "enter your email or phone and we\\'ll send \\n'\n    'you a link to get get back into  your account",
+
+
+  "Phone": "Phone",
+  "Next": "Next",
+  "Need More Help ?": "Need More Help ?",
+  "Enter Your Email": "Enter Your Email",
+
+  "Home": "Home",
+  "category": "category",
+  "best seller": "best seller",
+  "see more": "see more",
+  "Healthy Food \\n For Busy People": "Healthy Food \\n For Busy People",
+  "View Our Menu": "View Our Menu",
+  "Already Exist": "Already Exist",
+  "Add": "Add",
+
+  "My Orders": "My Orders",
+  "Add To Cart": "Add To Cart",
+  "Comment for Ordering": "Comment for Ordering",
+  "potato": "potato",
+  "salade": "salade",
+  "pasta": "pasta",
+  "rice": "rice",
+  "Required": "Required",
+  "Side 2": "Side 2",
+  "Side 1": "Side 1",
+  "protein": "protein",
+  "carb": "carb",
+  "fat": "fat",
+  "calories": "calories",
+
+  "done": "done",
+  "Verify Phone": "Verify Phone",
+  "Code Is Sent To": "Code Is Sent To ",
+  "Allowing to paste": "Allowing to paste",
+  "Don\\'t Receive Code ?": "Don\\'t Receive Code ?",
+  " Resend Code": " Resend Code",
+  "Verify And Create Account": "Verify And Create Account",
+
+  "Account Information": "Account Information",
+  "Address Information": "Address Information",
+  "Language": "Language",
+  "Recalculate Bmr": "Recalculate Bmr",
+  "Dark Mode": "Dark Mode",
+  "Log Out": "Log Out",
+  "Settings": "Settings",
+
+
+
+  "Sign In To Continue": "Sign In To Continue",
+
+  "Password": "Password",
+  "Enter Your Password": "Enter Your Password",
+  "Remember me": "Remember me",
+  "Login": "Login",
+  "OR": "OR",
+  " Sign Up": " Sign Up",
+  "Don\\'t Have An Account ?  ": "Don\\'t Have An Account ?  ",
+
+  "Create New Account": "Create New Account",
+  "Enter Your Name": "Enter Your Name",
+  "Name": "Name",
+  "Sign up": "Sign up",
+  "Enter Your Phone": "Enter Your Phone",
+  "Have An Account ?  ": "Have An Account ?  ",
+  " Sign In": " Sign In",
+
+  "sandwiches": "sandwiches",
+  "drinks": "drinks",
+  "desserts": "desserts",
+  "salad": "salad",
+  "ketogenic": "ketogenic",
+  "chicken": "chicken",
+  "beef": "beef",
+  "About Us": "About Us",
+  "Send FeedBack": "Send FeedBack",
+  "Share this app": "Share this app",
+  "Done": "Done",
+
+
+  "Cancel": "Cancel",
+  "Start Voice Call": "Start Voice Call",
+  "Send Message": "Send Message"
 
 
 }

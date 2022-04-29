@@ -1,7 +1,7 @@
 import 'package:fitandfresh/shared/constants/images.dart';
 import 'package:fitandfresh/domain/cubit/auth/phone_auth_cubit.dart';
 import 'package:fitandfresh/domain/cubit/auth/phone_auth_state.dart';
-import 'package:fitandfresh/presentation/dialoges/toast.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fitandfresh/presentation/modules/otp.dart';
 import 'package:fitandfresh/domain/provider/countryProv.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +16,7 @@ import '../../shared/validator.dart';
 import '../widgets/custom_scaffold.dart';
 
 class CallScreen extends StatelessWidget {
+  GlobalKey<ScaffoldState> scaffoldKey =  GlobalKey<ScaffoldState>();
 
   GlobalKey<FormState> keyform = GlobalKey<FormState>();
   TextEditingController controllerPhone = TextEditingController();
@@ -54,7 +55,7 @@ class CallScreen extends StatelessWidget {
                       top: h * 0.25,
                       child: Container(
                           child: CustomText(
-                        text: 'Continue With Phone Number',
+                        text: 'Continue With Phone Number'.tr(),
                       )),
                     ),
                   ],
@@ -85,7 +86,7 @@ class CallScreen extends StatelessWidget {
                         children: [
 
                           CustomTextFormField(
-                              text: 'Country',
+                              text: 'Country'.tr(),
                               readonly: true,
 
                               hintText:'|  '+'${Provider.of<CountryProv>(context).countryName==null?'مصر':Provider.of<CountryProv>(context).countryName
@@ -100,9 +101,9 @@ class CallScreen extends StatelessWidget {
                           ),
 
                           CustomTextFormField(
-                           // validate: Validator.validatePhone(controllerPhone.text),
-                            text: 'Phone Number',
-                            hintText: 'Enter Your Phone Nummber',
+                            validate: Validator.validatePhone,
+                            text: 'Phone Number'.tr(),
+                            hintText: 'Enter Your Phone Number'.tr(),
                             prefixIcon: Icons.call,
                             obscureTxt: false,
                             controller: controllerPhone,
@@ -118,10 +119,13 @@ class CallScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding:  EdgeInsets.only(top: 20.sp,bottom: 10.sp),
-                  child: CustomButton('Continue', () {
+                  child: CustomButton('Continue'.tr(), () {
                 //    Navigator.push(context, MaterialPageRoute(builder: (_)=>OtpScreen(getFullNumber(context, controllerPhone.text))));
-                    PhoneAuthCubit.get(context).phoneAuth(
-                        getFullNumber(context, controllerPhone.text));
+                    if(keyform.currentState!.validate()){
+                      PhoneAuthCubit.get(context).phoneAuth(
+                          getFullNumber(context, controllerPhone.text));
+                    }
+
 
 
 
@@ -131,7 +135,7 @@ class CallScreen extends StatelessWidget {
             ),
           ),
 
-      ),
+      ), scaffKey: scaffoldKey,
     );
   }
 }

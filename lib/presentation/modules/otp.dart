@@ -13,12 +13,14 @@ import '../../shared/constants/colors.dart';
 import '../../shared/constants/images.dart';
 import '../../shared/constants/screens.dart';
 import '../widgets/custom_scaffold.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class OtpScreen extends StatelessWidget {
 
   String? userPhone;
 
   OtpScreen(this.userPhone);
+  GlobalKey<ScaffoldState> scaffoldKey =  GlobalKey<ScaffoldState>();
 
   TextEditingController controllerOtp=TextEditingController();
 
@@ -40,7 +42,7 @@ class OtpScreen extends StatelessWidget {
               listener: (BuildContext context, Object? state) {
                 if(state is OtpSuccess){
                   print('done');
-                  Fluttertoast.showToast(msg: 'done');
+                  Fluttertoast.showToast(msg: 'done'.tr());
                   Navigator.popAndPushNamed(context, homepath);
 
                 }
@@ -69,7 +71,7 @@ class OtpScreen extends StatelessWidget {
                           child: Center(
                             child: Container(
                                 child: CustomText(
-                              text: 'Verify Phone',
+                              text: 'Verify Phone'.tr(),
                             )),
                           ),
                         ),
@@ -81,7 +83,7 @@ class OtpScreen extends StatelessWidget {
                   ),
                   Center(
                       child: CustomText(
-                        text: 'Code Is Sent To '+userPhone!,color: Colors.grey,
+                        text: 'Code Is Sent To'.tr()+userPhone!,color: Colors.grey,
                       )),
                   Padding(
                     padding: EdgeInsets.only(bottom: 21.sp),
@@ -128,7 +130,7 @@ class OtpScreen extends StatelessWidget {
 //                  });
                     },
                     beforeTextPaste: (text) {
-                      print("Allowing to paste $text");
+                      print("Allowing to paste".tr()+ " $text");
                       //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
                       //but you can show anything you want here, like your pop up saying wrong paste format or etc
                       return true;
@@ -140,18 +142,18 @@ class OtpScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CustomText(text: 'Don\'t Receive Code ?',color: Colors.grey,),
+                      CustomText(text: 'Don\'t Receive Code ?'.tr(),color: Colors.grey,),
                       InkWell(onTap: (){
                         PhoneAuthCubit.get(context).phoneAuth(userPhone!);
 
 
                       },
-                          child: CustomText(text: ' Resend Code',color: Colors.black,)),
+                          child: CustomText(text: ' Resend Code'.tr(),color: Colors.black,)),
                     ],),
                   Padding(
                     padding: EdgeInsets.only(bottom: h*0.125),
                   ),
-                  CustomButton('Verify And Create Account', () {
+                  CustomButton('Verify And Create Account'.tr(), () {
                     PhoneAuthCubit.get(context).submitCode(controllerOtp.text);
                   }),
                 ],
@@ -159,7 +161,7 @@ class OtpScreen extends StatelessWidget {
             ),
           ),
         ),
-      ),
+      ), scaffKey: scaffoldKey,
     );
   }
 }

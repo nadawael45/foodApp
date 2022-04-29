@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:fitandfresh/data/local/cacheHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dark_state.dart';
@@ -13,6 +14,7 @@ class DarkModeCubit extends Cubit<DarkModeState> {
 
   changeMode() {
     isDark =! isDark;
+    CacheHelper.putBool('isDark', isDark);
     changeToDark();
   }
 

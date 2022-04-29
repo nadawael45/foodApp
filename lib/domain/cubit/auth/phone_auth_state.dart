@@ -23,3 +23,14 @@ class OtpFailed extends PhoneAuthStates{
 
 }
 
+class SignInSuccess extends PhoneAuthStates{
+}
+class SignInFailed extends PhoneAuthStates{
+  String? error;
+
+  SignInFailed(this.error);
+
+
+
+}
+class SignInNeedRegister extends PhoneAuthStates{}

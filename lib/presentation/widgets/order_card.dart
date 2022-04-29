@@ -25,7 +25,7 @@ class CustomOrder extends StatelessWidget {
             height: 100.sp,
             child: Row(
               children: [
-                Image.asset(img!,fit: BoxFit.fill,
+                Image.network(img!,fit: BoxFit.fill,
                   height: 100.sp,width: 100.sp,
 
                 ),

@@ -1,6 +1,14 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:fitandfresh/data/local/cacheHelper.dart';
+import 'package:fitandfresh/domain/cubit/cart/cart_cubit.dart';
+import 'package:fitandfresh/domain/cubit/pregress_hud/progress_cubit.dart';
+import 'package:fitandfresh/domain/cubit/pregress_hud/progress_states.dart';
+import 'package:fitandfresh/domain/cubit/product/product_cubit.dart';
+import 'package:fitandfresh/domain/cubit/quantity/quantity_cubit.dart';
+import 'package:fitandfresh/domain/cubit/quantity/quantity_states.dart';
+import 'domain/cubit/favourite/fav_cubit.dart';
 import 'domain/provider/countryProv.dart';
 import 'shared/app_routes.dart';
 import 'package:fitandfresh/domain/cubit/auth/email_auth_cubit.dart';
@@ -23,9 +31,13 @@ import 'domain/cubit/check_language/lang_state.dart';
 import 'domain/cubit/location/location_states.dart';
 
 void main() async {
+ // ده هيبنيلي الويدجيت  كلها الاول وبعدين انفذ باقي العمليا فاير وغيره
   WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper.init();
+
   await Firebase.initializeApp();
   await EasyLocalization.ensureInitialized();
+
 
   BlocOverrides.runZoned(
     () {
@@ -60,8 +72,16 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (_) => CheckConnectionCubit()..initialConnection()),
         BlocProvider(create: (_) => PhoneAuthCubit()),
+        BlocProvider(create: (_) => CartCubit()..getCartItems()),
         BlocProvider(create: (_) => EmailAuthCubit()),
         BlocProvider(create: (_) => DarkModeCubit()),
+        BlocProvider(create: (_) => QuantityCubit()),
+
+        BlocProvider(create: (_) => ProgressHudCubit()..dismissProgress()),
+        BlocProvider(create: (_) => ProductCubit()..getMyProduct()),
+
+        BlocProvider(create: (_) => FavCubit()..getMyFav()),
+
         BlocProvider(
             create: (_) => LocationCubit()..checkService()),
       ],
@@ -82,67 +102,62 @@ class MyApp extends StatelessWidget {
                 OneContext().popAllDialogs();
               }
           },
-          child: BlocBuilder<CheckLanguageCubit, CheckLanguageState>(
-              builder: (BuildContext context, state) {
-                if (state is ArabicLanguage) {
-//                CheckLanguageCubit
-//                    .get(context)
-//                    .isArabic = true;
-                 // context.setLocale(Locale('ar'));
-                  print(('salma').tr());
-                } else {
-                  print(('nada').tr());
+          child: BlocListener<ProgressHudCubit,ProgressHudStates>(
+            listener: (BuildContext context, state) {  },
+            child: BlocBuilder<CheckLanguageCubit, CheckLanguageState>(
+                builder: (BuildContext context, state) {
 
-//                CheckLanguageCubit
-//                    .get(context)
-//                    .isArabic = false;
-                 // context.setLocale(Locale('en'));
-                }
-
-
-                return BlocBuilder<DarkModeCubit, DarkModeState>(
-                  builder: (BuildContext context, state) {
-                    if (state is DarkMode) {
-                      DarkModeCubit
-                          .get(context)
-                          .isDark = true;
-                    } else {
-                      DarkModeCubit
-                          .get(context)
-                          .isDark = false;
-                    }
-
-                    return MaterialApp(
-                      localizationsDelegates: context.localizationDelegates,
-                      supportedLocales: context.supportedLocales,
-                      locale: context.locale,
-                      debugShowCheckedModeBanner: false,
-                      theme: ThemeData(
-//                    brightness: DarkModeCubit.get(context).isDark
-//                        ? Brightness.dark
-//                        : Brightness.light,
-                        //primaryColor: Colors.lightGreen,
-                        backgroundColor: DarkModeCubit
+                  return BlocBuilder<DarkModeCubit, DarkModeState>(
+                    builder: (BuildContext context, state) {
+                      if (state is DarkMode) {
+                        DarkModeCubit
                             .get(context)
-                            .isDark ? Colors.grey.shade800 : Colors.white,
-                        colorScheme: ColorScheme.fromSwatch().copyWith(
-                          secondary: Colors.lightGreen,
-                          primary: Colors.lightGreen,
-                          brightness: DarkModeCubit
-                              .get(context)
-                              .isDark
-                              ? Brightness.dark
-                              : Brightness.light,
-                        ),
-                      ),
-                      builder: OneContext().builder,
-                      useInheritedMediaQuery: true,
-                      onGenerateRoute: AppRoutes().onGenerateRoutes,
-                    );
-                  },
+                            .isDark = true;
+                        CacheHelper.getBool('isDark');
 
-                );
-              }
+                      } else {
+                        DarkModeCubit
+                            .get(context)
+                            .isDark = false;
+                        CacheHelper.getBool('isDark');
+
+                      }
+
+                      return MaterialApp(
+                        localizationsDelegates: context.localizationDelegates,
+                        supportedLocales: context.supportedLocales,
+                        locale: context.locale,
+                        debugShowCheckedModeBanner: false,
+                        theme: ThemeData(
+
+                          backgroundColor:
+//                        DarkModeCubit
+//                            .get(context)
+//                            .isDark
+                          CacheHelper.getBool('isDark')
+
+                              ? Colors.grey.shade800 : Colors.white,
+                          colorScheme: ColorScheme.fromSwatch().copyWith(
+                            secondary: Colors.lightGreen,
+                            primary: Colors.lightGreen,
+                            brightness:
+                                CacheHelper.getBool('isDark')
+//                          DarkModeCubit
+//                              .get(context)
+//                              .isDark
+                                ? Brightness.dark
+                                : Brightness.light,
+                          ),
+                        ),
+                        builder: OneContext().builder,
+                        useInheritedMediaQuery: true,
+                        onGenerateRoute: AppRoutes().onGenerateRoutes,
+                      );
+                    },
+
+                  );
+                }
+            ),
           ),
         ),
             ),

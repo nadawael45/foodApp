@@ -1,3 +1,4 @@
+import 'package:fitandfresh/data/local/cacheHelper.dart';
 import 'package:fitandfresh/data/models/drawer_model.dart';
 import 'package:fitandfresh/presentation/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import '../../shared/constants/images.dart';
 import '../../shared/constants/screens.dart';
 import 'feedbackDialoge.dart';
 class CustomDrawer extends StatelessWidget {
+  var name =CacheHelper.getString('Name');
   @override
   Widget build(BuildContext context) {
 
@@ -39,7 +41,7 @@ class CustomDrawer extends StatelessWidget {
               children: [
                 Padding(
                   padding:  EdgeInsets.only(bottom: 20.sp),
-                  child: CustomText(text: 'Hello\nNada Wael',fontWeight: FontWeight.bold,
+                  child: CustomText(text: 'Hello' '\n$name',fontWeight: FontWeight.bold,
                     textAlign: TextAlign.start,txtSize: 14.sp,),
                 ),
               ],

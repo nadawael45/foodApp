@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:fitandfresh/data/local/cacheHelper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/src/public_ext.dart';
@@ -16,15 +17,20 @@ class CheckLanguageCubit extends Cubit<CheckLanguageState>{
   changeLangBool(BuildContext context){
     isArabic=!isArabic;
     context.locale.toString()=='en'?context.setLocale(Locale('ar')):context.setLocale(Locale('en'));
-    changeLang();
+    CacheHelper.putBool('isArab', isArabic);
+    changeLang(context);
   }
 
-  changeLang(){
+  changeLang(BuildContext context){
     if(isArabic){
+      context.setLocale(Locale('ar'));
+      CacheHelper.putBool('isArab', true);
 
       emit(ArabicLanguage());
     }
     if(isArabic==false){
+      context.setLocale(Locale('en'));
+      CacheHelper.putBool('isArab', false);
 
       emit(EnglishLanguage());
     }

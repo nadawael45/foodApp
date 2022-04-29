@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:fitandfresh/presentation/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 import '../../shared/constants/colors.dart';
 class DoneDialoge extends StatelessWidget {
   @override
@@ -29,7 +29,7 @@ class DoneDialoge extends StatelessWidget {
                   ),
                   child: Icon(Icons.done,color: priGreen,size: 30,),),
                 SizedBox(height: 15.sp,),
-                CustomText(color: priGreen,text: 'Done',txtSize: 15.sp,)
+                CustomText(color: priGreen,text: 'Done'.tr(),txtSize: 15.sp,)
               ],
             ),
           ),

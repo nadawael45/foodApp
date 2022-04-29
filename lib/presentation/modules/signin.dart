@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:fitandfresh/data/local/cacheHelper.dart';
 import 'package:fitandfresh/shared/validator.dart';
 import '../../domain/cubit/auth/email_auth_cubit.dart';
 import '../../domain/cubit/auth/email_auth_state.dart';
@@ -13,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 import '../../shared/constants/screens.dart';
 import '../widgets/custom_scaffold.dart';
 
@@ -29,10 +30,11 @@ class _SignInState extends State<SignIn> {
 
   TextEditingController controllerPass=TextEditingController();
   TextEditingController controllerEmail=TextEditingController();
+  GlobalKey<ScaffoldState> scaffoldKey =  GlobalKey<ScaffoldState>();
 
    GlobalKey<FormState> formKey =  GlobalKey<FormState>();
 
-
+Validator validator=Validator();
   @override
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
@@ -82,14 +84,18 @@ class _SignInState extends State<SignIn> {
                       Column(
                         children: [
                           Padding(padding:  EdgeInsets.only(bottom:24.sp),),
-                          CustomTextFormField(text: 'Email',controller: controllerEmail,
-                          //  validate: Validator.validateEmail,
-                            hintText: 'Enter Your Email',prefixIcon:Icons.mail,obscureTxt: false,keyBoardType: TextInputType.emailAddress,),
+                          CustomTextFormField(text: 'E-mail'.tr(),controller: controllerEmail,
+                            validate:
+                              Validator.validateEmail,
+
+                            hintText: 'Enter Your Email'.tr(),prefixIcon:Icons.mail,obscureTxt: false,keyBoardType: TextInputType.emailAddress,),
 
                           Padding(padding:  EdgeInsets.only(bottom:13.sp),),
-                          CustomTextFormField(text: 'Passwod',controller: controllerPass,
-                          // validate: Validator.validatePassword(controllerPass.text),
-                  hintText: 'Enter Your Password',prefixIcon: Icons.lock,obscureTxt: obscure,suffixIcon: obscure?Icons.visibility_off:Icons.remove_red_eye,keyBoardType: TextInputType.visiblePassword,
+                          CustomTextFormField(text: 'Password'.tr(),controller: controllerPass,
+                          validate:
+                            Validator.validatePassword,
+
+                  hintText: 'Enter Your Password'.tr(),prefixIcon: Icons.lock,obscureTxt: obscure,suffixIcon: obscure?Icons.visibility_off:Icons.remove_red_eye,keyBoardType: TextInputType.visiblePassword,
                   function: (){
                   setState(() {
                           obscure=!obscure;
@@ -112,9 +118,10 @@ class _SignInState extends State<SignIn> {
                       fillColor: MaterialStateProperty.all(priGrey),
                       focusColor: priGreen,
                         value: value, onChanged: (bool){setState(() {
+
                       value=bool!;
                     });}),
-                    CustomText(text: 'Remember me',color: Colors.grey,)
+                    CustomText(text: 'Remember me'.tr(),color: Colors.grey,)
 
                   ],),
                   InkWell(onTap: (){
@@ -124,9 +131,13 @@ class _SignInState extends State<SignIn> {
               ],),
 
               Padding(padding:  EdgeInsets.only(bottom:10.sp),),
-              CustomButton('Login', (){
+              CustomButton('Login'.tr(), (){
                 if(formKey.currentState!.validate()){
-                  EmailAuthCubit.get(context).SignInAuth(controllerEmail.text, controllerPass.text);
+                  print(value);
+                  if(value==true){
+                    CacheHelper.putBool('rememberMe', true);
+                  }
+                  EmailAuthCubit.get(context).signInAuth(controllerEmail.text, controllerPass.text);
 
                 }
 
@@ -135,68 +146,16 @@ class _SignInState extends State<SignIn> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                CustomText(text: 'Don\'t Have An Account ?  ',color: Colors.black,),
+                CustomText(text: 'Don\'t Have An Account ?  ',),
                 InkWell(onTap: (){
                   Navigator.pushNamed(context, signuppath);
 
                 },
-                    child: CustomText(text: ' Sign Up',color: priGreen,)),
+                    child: CustomText(text: ' Sign Up'.tr(),color: priGreen,)),
               ],),
               Padding(padding:  EdgeInsets.only(bottom:14.sp),),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(line,width: w*0.3,),
-                  Padding(
-                    padding:  EdgeInsets.only(right: 8.sp,left: 8.sp),
-                    child: CustomText(text: 'OR',fontWeight: FontWeight.bold,color: priGrey,),
-                  ),
-                  SvgPicture.asset(line,width: w*0.3,),
+              AnotherAuth(),
 
-
-                ],
-              ),
-              Padding(padding:  EdgeInsets.only(bottom:18.sp),),
-              Row(mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                Padding(
-                  padding:  EdgeInsets.only(right: 16.sp),
-                  child: CustomBtnIcon(
-                    width: 40.sp,
-                    height: 40.sp,
-                    icon:Padding(
-                    padding:  EdgeInsets.all(8.0),
-                    child: SvgPicture.asset(google,color: Colors.white),
-                  ) ,color: Colors.red,),
-                ),
-                Padding(
-                  padding:  EdgeInsets.only(right: 16.sp),
-                  child: CustomBtnIcon(
-                    width: 40.sp,
-                    height: 40.sp,
-                    icon:Icon(Icons.facebook,color: Colors.white,size: 35.sp,) ,color: Colors.blue,),
-                ),
-                Padding(
-                  padding:  EdgeInsets.only(right: 16.sp),
-                  child: CustomBtnIcon(
-                    width: 40.sp,
-                    height: 40.sp,
-                    icon:Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SvgPicture.asset(apple,color: Colors.white,),
-                  ) ,color: Colors.black,),
-                ),
-                CustomBtnIcon(
-                  width: 40.sp,
-                  height: 40.sp,
-                  icon:Icon(Icons.call,color: Colors.white,size: 30.sp,) ,color: Colors.green,function: (){
-                  Navigator.pushNamed(context, callpath);
-                },),
-
-              ],),
-
-
-            SizedBox(height: 20.sp,)
 
 
 
@@ -204,7 +163,72 @@ class _SignInState extends State<SignIn> {
             ],
           ),
         ),
-      ),
+      ), scaffKey: scaffoldKey,
     );
+  }
+}
+
+class AnotherAuth extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    var w = MediaQuery.of(context).size.width;
+
+    return Column(children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset(line,width: w*0.3,),
+          Padding(
+            padding:  EdgeInsets.only(right: 8.sp,left: 8.sp),
+            child: CustomText(text: 'OR'.tr(),fontWeight: FontWeight.bold,color: priGrey,),
+          ),
+          SvgPicture.asset(line,width: w*0.3,),
+
+
+        ],
+      ),
+      Padding(padding:  EdgeInsets.only(bottom:18.sp),),
+      Row(mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding:  EdgeInsets.only(right: 16.sp),
+            child: CustomBtnIcon(
+              width: 40.sp,
+              height: 40.sp,
+              icon:Padding(
+                padding:  EdgeInsets.all(8.0),
+                child: SvgPicture.asset(google,color: Colors.white),
+              ) ,color: Colors.red,),
+          ),
+          Padding(
+            padding:  EdgeInsets.only(right: 16.sp),
+            child: CustomBtnIcon(
+              width: 40.sp,
+              height: 40.sp,
+              icon:Icon(Icons.facebook,color: Colors.white,size: 35.sp,) ,color: Colors.blue,),
+          ),
+          Padding(
+            padding:  EdgeInsets.only(right: 16.sp),
+            child: CustomBtnIcon(
+              width: 40.sp,
+              height: 40.sp,
+              icon:Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SvgPicture.asset(apple,color: Colors.white,),
+              ) ,color: Colors.black,),
+          ),
+          CustomBtnIcon(
+            width: 40.sp,
+            height: 40.sp,
+            icon:Icon(Icons.call,color: Colors.white,size: 30.sp,) ,color: Colors.green,function: (){
+            Navigator.pushNamed(context, callpath);
+          },),
+
+        ],),
+
+
+      SizedBox(height: 20.sp,)
+    ],);
   }
 }

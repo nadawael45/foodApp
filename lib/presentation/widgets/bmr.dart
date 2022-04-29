@@ -3,8 +3,8 @@ import 'package:fitandfresh/presentation/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:easy_localization/easy_localization.dart';
-import '../../presentation/widgets/custom_button.dart';
-import '../../presentation/widgets/custom_scaffold.dart';
+import 'custom_button.dart';
+import 'custom_scaffold.dart';
 import '../../shared/constants/colors.dart';
 class BMR extends StatefulWidget {
   @override
@@ -14,7 +14,9 @@ class BMR extends StatefulWidget {
 class _BMRState extends State<BMR> {
   var grRadio;
   bool visible=false;
-var bmr;
+  GlobalKey<ScaffoldState> scaffoldKey =  GlobalKey<ScaffoldState>();
+
+  var bmr;
 bool isMale=false;
   TextEditingController controllerKG=TextEditingController();
   TextEditingController controllerAGE=TextEditingController();
@@ -134,7 +136,7 @@ bool isMale=false;
               ],
             ),
           ),
-        )
+        ), scaffKey: scaffoldKey,
       ),
     );
   }

@@ -5,11 +5,6 @@ class InitialState extends EmailAuthStates{}
 class SignInLoading extends EmailAuthStates{}
 // في حاله النجاح لازم اعرف رقم التليفون لان معني ان هو نجح ان االرساله اتبعتت بتاعه الرقم السري
 class SignInSuccess extends EmailAuthStates{
-  String? email;
-
-
-  SignInSuccess(this.email);
-
 }
 class SignInFailed extends EmailAuthStates{
   String? error;
@@ -19,6 +14,7 @@ class SignInFailed extends EmailAuthStates{
 
 
 }
+class SignInNeedRegister extends EmailAuthStates{}
 
 
 
@@ -29,4 +25,12 @@ class CodePassFailed extends EmailAuthStates{}
 class SignUpLoading extends EmailAuthStates{}
 class SignUpSuccess extends EmailAuthStates{}
 class SignUpFailed extends EmailAuthStates{}
+
+class SignOut extends EmailAuthStates{}
+
+class ChangeAuthLoading extends EmailAuthStates{}
+class ChangeAuthSuccess extends EmailAuthStates{}
+class ChangeAuthFailed extends EmailAuthStates{}
+
+
 

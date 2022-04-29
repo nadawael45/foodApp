@@ -1,3 +1,4 @@
+import 'package:fitandfresh/data/local/cacheHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import '../../shared/constants/images.dart';
@@ -5,6 +6,7 @@ import '../../shared/constants/screens.dart';
 import '../widgets/custom_scaffold.dart';
 import '../widgets/custom_setting_listtile.dart';
 import '../widgets/custom_text.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class AcountInfoScreen extends StatefulWidget {
   @override
@@ -12,14 +14,17 @@ class AcountInfoScreen extends StatefulWidget {
 }
 
 class _AcountInfoScreenState extends State<AcountInfoScreen> {
+  GlobalKey<ScaffoldState> scaffoldKey =  GlobalKey<ScaffoldState>();
+
   bool isMale = true;
   var btnColor;
-
+  var name=CacheHelper.getString('Name');
+  var email=CacheHelper.getString('Email');
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
       boolAppBar: true,
-      text: 'Account Info',
+      text: 'Account Info'.tr(),
       prefixFunction: ()=>Navigator.of(context).pop(),
       prefixIcon: Icons.arrow_back,
       body: SingleChildScrollView(
@@ -39,7 +44,7 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
               height: 15.sp,
             ),
             CustomText(
-              text: 'Change profile picture',
+              text: 'Change profile picture'.tr(),
               color: Colors.grey,
               txtSize: 10.sp,
             ),
@@ -54,47 +59,47 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
                 Padding(
                   padding: EdgeInsetsDirectional.only(start: 10.sp),
                   child: CustomText(
-                    text: 'E-mail',
+                    text: 'E-mail'.tr(),
                     color: Colors.grey,
                     txtSize: 8.sp,
                   ),
                 ),
                 SettingListTile(
-                  title: 'Nsdwael45@gmail.com',
+                  title: email,
                   widget: SizedBox(),
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.only(start: 10.sp),
                   child: CustomText(
-                    text: 'First Name',
+                    text: 'First Name'.tr(),
                     color: Colors.grey,
                     txtSize: 8.sp,
                   ),
                 ),
                 SettingListTile(
-                  title: 'Nada',
+                  title: name,
                   widget: SizedBox(),
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.only(start: 10.sp),
                   child: CustomText(
-                    text: 'Last Name',
+                    text: 'Last Name'.tr(),
                     color: Colors.grey,
                     txtSize: 8.sp,
                   ),
                 ),
                 SettingListTile(
-                  title: 'Wael',
+                  title: name,
                   widget: SizedBox(),
                 ),
               ],
             ),
             SettingListTile(
-              title: 'Change E-mail',
+              title: 'Change E-mail'.tr(),
               function: () => Navigator.pushNamed(context, changeEmail),
             ),
             SettingListTile(
-              title: 'Change Password ',
+              title: 'Change Password'.tr(),
               function: () => Navigator.pushNamed(context, changePass),
             ),
             Padding(
@@ -128,7 +133,7 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
                                         borderRadius:
                                             BorderRadius.circular(10)))),
                             child: CustomText(
-                              text: 'Male',
+                              text: ("Male").tr(),
                               color: Colors.black,
                             )),
                       ),
@@ -151,7 +156,7 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
                                         borderRadius:
                                             BorderRadius.circular(10)))),
                             child: CustomText(
-                                text: 'Female', color: Colors.black)),
+                                text: 'Female'.tr(), color: Colors.black)),
                       ),
                     ],
                   ),
@@ -160,7 +165,7 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
             ),
           ],
         ),
-      ),
+      ), scaffKey: scaffoldKey,
     );
   }
 }

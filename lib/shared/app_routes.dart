@@ -1,4 +1,4 @@
-import 'package:fitandfresh/data/models/bmr.dart';
+import 'package:fitandfresh/data/local/cacheHelper.dart';
 import 'package:fitandfresh/presentation/modules/acount_info.dart';
 import 'package:fitandfresh/presentation/modules/addressInfoScreen.dart';
 import 'package:fitandfresh/presentation/modules/call.dart';
@@ -6,13 +6,15 @@ import 'package:fitandfresh/presentation/modules/change_email.dart';
 import 'package:fitandfresh/presentation/modules/change_password.dart';
 import 'package:fitandfresh/presentation/modules/forgot_pass.dart';
 import 'package:fitandfresh/presentation/modules/home.dart';
+import 'package:fitandfresh/presentation/modules/home_page.dart';
 import 'package:fitandfresh/presentation/modules/introduction.dart';
 import 'package:fitandfresh/presentation/modules/location_screen.dart';
 import 'package:fitandfresh/presentation/modules/myorders.dart';
-import 'package:fitandfresh/presentation/modules/order_details.dart';
+import 'package:fitandfresh/presentation/modules/confirm_order.dart';
 import 'package:fitandfresh/presentation/modules/signin.dart';
 import 'package:fitandfresh/presentation/modules/signup.dart';
 import 'package:fitandfresh/presentation/modules/splash.dart';
+import 'package:fitandfresh/presentation/widgets/bmr.dart';
 import 'package:fitandfresh/shared/constants/screens.dart';
 import 'package:flutter/material.dart';
 import '../presentation/modules/see_all.dart';
@@ -20,25 +22,42 @@ import '../presentation/modules/see_all.dart';
 
 
 class AppRoutes{
-  String? phone;
+var a;
+var b;
   Route? onGenerateRoutes(RouteSettings routeSettings){
     switch(routeSettings.name){
       case splashpath:
-      return MaterialPageRoute(builder: (_)=>SplashScreen(nextScreen: IntroScreen(),));
+      return MaterialPageRoute(builder: (_){
+       bool onBoard=CacheHelper.getBool('onBoard');
+       bool remember=CacheHelper.getBool('rememberMe');
+
+       if(onBoard){
+      if(remember){
+        return SplashScreen(nextScreen:HomeScreen() ,);
+
+      }else {
+        return SplashScreen(nextScreen: SignIn(),);
+      }
+    }else{
+      return SplashScreen(nextScreen:IntroScreen() ,);
+
+    }
+      });
+
       case intropath:
-        return MaterialPageRoute(builder: (_)=>IntroScreen());
+
+          return MaterialPageRoute(builder: (_)=>IntroScreen());
+
       case signinpath:
         return MaterialPageRoute(builder: (_)=>SignIn());
       case signuppath:
         return MaterialPageRoute(builder: (_)=>SignUp());
       case callpath:
         return MaterialPageRoute(builder: (_)=>CallScreen());
-//      case otppath:
-//        return MaterialPageRoute(builder: (_)=>OtpScreen());
       case homepath:
         return MaterialPageRoute(builder: (_)=>HomeScreen());
-      case orderDetails:
-        return MaterialPageRoute(builder: (_)=>ConfermOrder());
+//      case orderDetails:
+//        return MaterialPageRoute(builder: (_)=>ConfermOrder());
       case addressInfo:
         return MaterialPageRoute(builder: (_)=>AddressInfoScreen());
       case bmr:

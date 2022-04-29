@@ -1,11 +1,16 @@
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitandfresh/domain/cubit/auth/phone_auth_state.dart';
 import 'package:fitandfresh/presentation/dialoges/toast.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../data/models/user_model.dart';
+
 class PhoneAuthCubit extends Cubit<PhoneAuthStates> {
   PhoneAuthCubit() : super(PhoneAuthLoading());
+  UserModel userModelCubit=UserModel();
+
 
 // السطر ده بيخليني انادي علي العمليات بتاعه البلوك بعد كده
   static PhoneAuthCubit get(context) => BlocProvider.of(context);
@@ -79,4 +84,28 @@ submitCode(String otpCode){
 
 
 }
+
+
+
+  checkUserExist({uid,}){
+
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .get()
+        .then((value) {
+      if (value.exists) {
+        print('Account exist Go to ShopLayout');
+        userModelCubit = UserModel.fromJson(value.data()!);
+        emit(SignInSuccess());
+      } else {
+        emit(SignInNeedRegister());
+        print('Account Not exist Go to Register');
+      }
+    }).catchError((onError) {
+      emit(SignInFailed(onError.toString()));
+      print('ErroNO: ${onError.toString()}');
+    });
+  }
+
 }

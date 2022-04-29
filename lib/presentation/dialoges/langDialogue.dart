@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
+import '../../data/local/cacheHelper.dart';
 import '../../domain/cubit/check_language/lang_cubit.dart';
 import '../../shared/constants/colors.dart';
 class LangDialoge extends StatelessWidget {
@@ -27,7 +28,11 @@ class LangDialoge extends StatelessWidget {
           children: [
             SimpleDialogOption(
               onPressed: (){
-                  CheckLanguageCubit.get(context).changeLangBool(context);
+                  //CheckLanguageCubit.get(context).changeLangBool(context);
+                CheckLanguageCubit.get(context).isArabic=false;
+                CheckLanguageCubit.get(context).changeLang(context);
+                CacheHelper.putBool('isArab', false);
+
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,20 +40,27 @@ class LangDialoge extends StatelessWidget {
                 children: [
                   CustomText(text: ('English').tr(),),
 
-                  CheckLanguageCubit.get(context).isArabic==false?Icon(Icons.done,color: priGreen,):SizedBox(),
+                  CacheHelper.getBool('isArab')
+                      ==false?
+                  Icon(Icons.done,color: priGreen,):SizedBox(),
                 ],
               ),
             ),
             Divider(color: Colors.grey.shade400,indent: 15.sp,endIndent: 15.sp,thickness: 1,),
             SimpleDialogOption(
               onPressed: (){
-                CheckLanguageCubit.get(context).changeLangBool(context);
+                //CheckLanguageCubit.get(context).changeLangBool(context);
+                CheckLanguageCubit.get(context).isArabic=true;
+                CheckLanguageCubit.get(context).changeLang(context);
+
+                CacheHelper.putBool('isArab', true);
               },
               child:Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomText(text: ('Arabic').tr(),),
-                  CheckLanguageCubit.get(context).isArabic?Icon(Icons.done,color: priGreen,):SizedBox(),
+                  CacheHelper.getBool('isArab')
+                      ?Icon(Icons.done,color: priGreen,):SizedBox(),
 
                 ],
               ),
